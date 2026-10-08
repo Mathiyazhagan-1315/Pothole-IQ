@@ -43,3 +43,13 @@ The OpenCV score is a heuristic, not a trained model. It works best on close, da
 
 ## Built during the hackathon
 Severity analysis, rainfall risk model, priority ranking, duplicate merging, dashboard, authority mode and tests. The base reporting app (Flask, SQLAlchemy, Leaflet map) existed beforehand.
+
+## Authority mode (for judges)
+
+The Repair queue page has an **Authority mode** button that lets you move reports from open to in progress to fixed.
+
+1. Open the **Repair queue** page.
+2. Click **Authority mode**.
+3. Enter the PIN: `2026`
+
+The PIN is set by the `AUTHORITY_PIN` environment variable (default `2026`).

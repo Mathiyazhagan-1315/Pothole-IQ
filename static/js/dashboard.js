@@ -4,7 +4,7 @@ const NEXT = { open: ["in_progress", "Start"], in_progress: ["fixed", "Mark fixe
 function renderLock() { $("#unlock").textContent = pin ? "🔓 Authority mode on" : "🔒 Authority mode"; }
 async function unlock() {
   if (pin) { pin = ""; sessionStorage.removeItem("pin"); renderLock(); return load(); }
-  const p = prompt("Enter authority PIN (demo PIN: 2026)"); if (!p) return;
+  const p = prompt("Enter authority PIN"); if (!p) return;
   try { await api("/api/authority/check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ pin: p }) });
     pin = p; sessionStorage.setItem("pin", p); renderLock(); toast("Authority mode enabled"); load(); }
   catch (e) { toast("Wrong PIN"); }

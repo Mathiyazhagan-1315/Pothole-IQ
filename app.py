@@ -164,6 +164,11 @@ def create_app(overrides=None):
                         i["report_count"], i["risk"], i["priority"]["score"], i["priority"]["level"], i["status"], i["why"]])
         return Response(buf.getvalue(), mimetype="text/csv",
                         headers={"Content-Disposition": "attachment; filename=potholeiq_repair_queue.csv"})
+    if os.getenv("SEED_DEMO") == "1":
+        with app.app_context():
+            if Report.query.count() == 0:
+                from seed import seed
+                seed(app)
     return app
 
 if __name__ == "__main__":
