@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Repair queue{% endblock %}
+{% block content %}
+<div class="wrap">
+ <div class="head"><div><h1>Repair priority queue</h1><p class="sub">Ranked by severity, repeat reports and rain-driven risk.</p></div>
+  <div class="actions"><button class="btn ghost" id="unlock">🔒 Authority mode</button><a class="btn" id="csv" href="/api/export.csv">Export CSV</a></div></div>
+ <div class="stats" id="stats"></div>
+ <div class="card rainrow"><b>Rain what-if</b><input type="range" id="rain" min="-1" max="150" value="-1"><span id="rainval">Live weather</span></div>
+ <div class="grid2"><div class="card"><h3>Open by severity</h3><div id="bars"></div></div>
+  <div class="card"><h3>How the priority score is built</h3><p class="hint">Severity 40% · Predicted rain risk 35% · Repeat reports 15% · Time open 10%. Every row shows its own breakdown.</p><div class="breakdown legend"><span><i class="seg s1"></i>Severity</span><span><i class="seg s2"></i>Risk</span><span><i class="seg s3"></i>Reports</span><span><i class="seg s4"></i>Age</span></div></div></div>
+ <div class="card tablewrap"><table id="tbl"><thead><tr><th>#</th><th>Location</th><th>Severity</th><th>Reports</th><th>Risk</th><th>Priority</th><th>Action</th></tr></thead><tbody></tbody></table>
+ <p id="empty" class="hint" hidden>No open reports. Great roads!</p></div>
+</div>
+{% endblock %}{% block scripts %}<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>{% endblock %}

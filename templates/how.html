@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}How it works{% endblock %}
+{% block content %}<div class="wrap narrow"><h1>From complaint box to decision system</h1>
+<p class="sub">Heavy rain is the main driver of road failure. PotholeIQ helps cities fix the right roads before the damage spreads.</p>
+<div class="flow"><div class="node"><b>1 Report</b>Photo + map pin</div><i>→</i><div class="node"><b>2 Assess</b>AI severity</div><i>→</i><div class="node"><b>3 Predict</b>Rain risk</div><i>→</i><div class="node"><b>4 Prioritise</b>Ranked queue</div></div>
+<div class="card"><h3>Severity analysis</h3><p>An OpenCV pipeline measures the dark cavity area against the surrounding road surface and the crack density, giving a 0-100 score. If an Anthropic API key is configured, a Claude vision model also rates the photo and the two scores are blended. The app always works offline using OpenCV alone.</p></div>
+<div class="card"><h3>Rain-linked risk model</h3><p>Rainfall for the past 3 days and the next 2 days comes from Open-Meteo (cached, with an offline fallback). Wetter weather raises the chance that weak spots worsen. Risk also grows with severity, repeat reports and how long a defect has been open.</p></div>
+<div class="card"><h3>Priority ranking</h3><p><b>Priority = 0.40 severity + 0.35 risk + 0.15 reports + 0.10 age.</b> It is transparent on purpose, so authorities can see why a road ranks where it does. Scores of 55+ mean fix now, 35-54 soon, below that monitor.</p></div>
+<div class="card"><h3>Smart duplicates</h3><p>Reports within 25 metres of an open pothole merge into it and raise its report count, so the queue stays clean while repeated complaints still count as a signal.</p></div>
+<div class="card"><h3>Limits</h3><p>The OpenCV score is a heuristic, not a trained model, and works best on close, daylight photos. It supports human judgement and does not replace inspection.</p></div></div>{% endblock %}

@@ -1,0 +1,5 @@
+potholeiq.db
+uploads/*
+!uploads/.gitkeep
+__pycache__/
+.pytest_cache/

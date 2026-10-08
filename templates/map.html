@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block title %}Live map{% endblock %}
+{% block content %}
+<div class="mapwrap">
+ <div id="map" data-lat="{{ center[0] }}" data-lng="{{ center[1] }}"></div>
+ <aside class="panel">
+  <h2>Road risk right now</h2>
+  <div class="rainbox"><div class="row"><span>Rain what-if</span><b id="rainval">Live</b></div>
+   <input type="range" id="rain" min="-1" max="150" value="-1" aria-label="Rain simulator">
+   <p class="hint">Drag to simulate heavy rain and watch risk and rankings change. Left end = live weather.</p>
+   <div id="rainnow" class="hint"></div></div>
+  <div class="legend"><span><i class="d minor"></i>Minor</span><span><i class="d moderate"></i>Moderate</span><span><i class="d severe"></i>Severe</span><span><i class="ring"></i>Predicted risk</span></div>
+  <h3>Top 5 to fix first</h3><ol id="top" class="toplist"></ol>
+  <a class="btn" href="/report">+ Report a pothole</a>
+ </aside>
+</div>
+{% endblock %}{% block scripts %}<script src="{{ url_for('static', filename='js/map.js') }}"></script>{% endblock %}

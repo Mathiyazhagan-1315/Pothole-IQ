@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% block title %}Report{% endblock %}
+{% block content %}
+<div class="wrap two">
+ <section class="card"><h1>Report a pothole</h1>
+  <p class="sub">Three quick steps. AI rates the damage from your photo.</p>
+  <form id="form" novalidate>
+   <label class="step"><span>1</span> Take or choose a photo</label>
+   <label class="drop" id="drop"><input type="file" id="photo" name="photo" accept="image/*" hidden>
+     <img id="preview" alt="" hidden><span id="droptxt">Tap to add a photo</span></label>
+   <div id="ai" class="ai" hidden></div>
+   <label class="step"><span>2</span> Pin the location</label>
+   <div class="row"><button type="button" class="btn ghost" id="gps">Use my location</button><span class="hint" id="coord">Tap the map to drop a pin</span></div>
+   <label class="step"><span>3</span> Details (optional)</label>
+   <input name="road_name" id="road" placeholder="Road or landmark" maxlength="120">
+   <textarea name="description" id="desc" placeholder="Anything helpful, e.g. near the bus stop, full of water" maxlength="500"></textarea>
+   <button class="btn big" id="submit" type="submit">Submit report</button>
+  </form>
+  <div id="result" class="result" hidden></div></section>
+ <section class="card map-card"><div id="pick" data-lat="{{ center[0] }}" data-lng="{{ center[1] }}"></div></section>
+</div>
+{% endblock %}{% block scripts %}<script src="{{ url_for('static', filename='js/report.js') }}"></script>{% endblock %}
